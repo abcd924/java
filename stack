@@ -1,0 +1,86 @@
+<!-- Write a menu driven program to perform the following stack and queue related
+operations:[Hint: use Array_push(), Array_pop(), Array_shift(), Array_unshift() ]
+a) Insert an element in stack
+b) Delete an element from stack
+c) Display the contents of stack
+d) Insert an element in queue
+e) Delete an element from queue
+f) Display the contents of queue -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="q2.php">
+        <h3>NUMBERS SHOULD BE SEPARATED BY ":"(colon)</h3>
+        ENTER A NUMBERS 
+        <input type="text" name="arr">
+        <br>
+
+        <input type="radio" name="op" value="1">Insert an element in stack</input>
+        <input type="text" name="item1" placeholder="Enter value to be inserted"> <br>
+        <input type="radio" name="op" value="2">Delete an element from stack</input> <br>
+        <input type="radio" name="op" value="3">Display the contents of stack</input> <br>
+        <input type="radio" name="op" value="4">Insert an element in queue</input>
+        <input type="text" name="item2" placeholder="Enter value to be inserted"> <br>
+        <input type="radio" name="op" value="5">Delete an element from queue</input> <br>
+        <input type="radio" name="op" value="6">Display the contents of queue</input> <br>
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
+<?php
+    $arr = $_REQUEST['arr'];
+    $op = $_REQUEST['op'];
+    $item1 = $_REQUEST['item1'];
+    $item2 = $_REQUEST['item2'];
+
+    $array = explode(':',$arr);
+    switch($op){
+        case 1:
+            echo "<br>Given Array is: ";
+            print_r($array);
+            array_push($array,$item1); echo"<br>";
+            echo "<br>After inserting element using push in stack <br>";
+            $arr = array_reverse($array);
+            print_r($arr);
+            break;
+        case 2:
+            echo "<br>Given Array is: ";
+            print_r($array);
+            array_pop($array); echo "<br>";
+            echo "<br>After deleting element using pop in stack <br>";
+            $arr = array_reverse($array);
+            print_r($arr);
+            break;
+        case 3:
+            $arr = array_reverse($array);
+            echo "<br>Array elements in stack are: ";
+            print_r($arr);
+            break;
+        case 4:
+            echo "<br>Given Array is: ";
+            print_r($array);
+            array_unshift($array,$item2); echo"<br>";
+            echo "<br>After inserting element using unshift in queue <br>";
+            print_r($array);
+            break;
+        case 5:
+            echo "<br>Given Array is: ";
+            print_r($array);
+            array_shift($array); echo"<br>";
+            echo "<br>After deleting element using shift in queue <br>";
+            print_r($array);
+            break;
+        case 6:
+            echo "<br>Array elements in queue are: ";
+            print_r($array);
+            break;            
+    }
+
+?>
