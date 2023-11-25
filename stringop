@@ -1,0 +1,73 @@
+<!-- Write a PHP script to accept 2 strings from the user, the first string should be a sentence and 
+second can be a word. 
+a. Delete a small part from first string after accepting position and number of characters to remove. 
+b. Insert the given small string in the given big string at specified position without removing any 
+characters from the big string. 
+c. Replace some characters/ words from given big string with the given small string at specified 
+position. 
+d. Replace all the characters from the big string with the small string after a specified 
+position. (Use substr_replace() function) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <style>
+        input[type="text"]{ 
+            width: 500px;
+        }
+    </style>
+</head>
+<body>
+    <form action="q2.php">
+        ENTER A SENTENCE <br>
+        <input type="text" name="str1"> <br>
+        ENTER A WORD or SENTENCE <br>
+        <input type="text" name="str2"> <br>
+        ENTER POSITION <br>
+        <input type="text" name="pos"> <br>  <br>
+
+        ENTER NUMBER OF CHARACTERS <br> <input type="text" name="no"> <br> <br> <br>
+
+        SELECT YOUR OPERATION <br>
+        <input type="radio" name="op" value="1">Delete a small part from first string after accepting position and number of characters to remove.. </input> <br>
+
+        <input type="radio" name="op" value="2">Insert the given small string in the given big string at specified position without removing any characters from the big string.. </input><br>
+
+        <input type="radio" name="op" value="3">Replace some characters/ words from given big string with the given small string at specified position. </input> <br>
+
+        <input type="radio" name="op" value="4">Replace all the characters from the big string with the small string after a specified position. </input> <br> <br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
+
+<?php
+    $str1 = $_REQUEST['str1'];
+    $str2 = $_REQUEST['str2'];
+    $pos = $_REQUEST['pos'];
+    $no = $_REQUEST['no'];
+    
+    $op = $_REQUEST['op'];
+
+    if($op == 1)
+    {
+        $temp = substr($str1,$pos,$no);
+        // echo "<br>$temp";
+        echo str_replace($temp,' ',$str1);
+    } 
+    else if($op ==2)
+    {
+        $temp = substr($str1,$pos);
+        $str2 = $str2.' '.$temp;
+        echo substr_replace($str1,$str2,$pos);
+    }
+    else if($op == 3)
+    {
+        echo substr_replace($str1,$str2,$pos,$no);
+    }
+    else if($op == 4)
+    {
+        echo substr_replace($str1,$str2,$pos);
+    }
+?>
