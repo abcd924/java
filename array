@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Associative Arrayconsole.log('object :>> ', object);</title>
+</head>
+<body>
+    <form action="qa2.php">
+        <h4>Each value separated by ":"</h4>
+        Enter Associative Array: <br>
+        Enter Keys <input type="text" name="AssoArrKey" placeholder="key1:key2:key3:....keyN"> <br>
+        Enter Values <input type="text" name="AssoArrVal" placeholder="val1:val2:val3:...valN"> <br>
+        <br>
+        
+        Enter element to be Searched in Associative Array: <br>
+        <input type="radio" name="op" placeholder="Enter key to be searched">Enter key to searched</input> 
+        <input type="text" name="SrAssoKey"> <br>
+        <input type="radio" name="op" placeholder="Enter value to be searched ">Enter value to searched</input> 
+        <input type="text" name="SrAssoVal"> <br>
+        <br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
+<?php
+    $AssoArrKey = $_REQUEST['AssoArrKey'];
+    $AssoArrVal = $_REQUEST['AssoArrVal'];
+   
+    $SrAssoKey = $_REQUEST['SrAssoKey'];
+    $SrAssoVal = $_REQUEST['SrAssoVal'];
+
+    $aakeys = explode(':',$AssoArrKey);
+    $aavalues = explode(':',$AssoArrVal);
+
+    $AssoArr = array();
+    for($i=0;$i<count($aakeys);$i++){
+        $AssoArr[$aakeys[$i]] = $aavalues[$i];
+    }
+
+    print_r($AssoArr);
+
+    if(array_key_exists($SrAssoKey,$AssoArr))
+        echo "<br> $SrAssoKey is present associative Array";
+    else
+        echo "<br> $SrAssoKey is not present in associative Array";
+    
+    if(array_key_exists($SrAssoVal,$AssoArr))
+        echo "<br><br> $SrAssoVal value is present associative Array";
+    else
+        echo "<br><br> $SrAssoVal  value is not present in associative Array";
+?>
