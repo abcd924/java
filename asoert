@@ -1,0 +1,64 @@
+<!-- Write a PHP script to sort the following associative array :
+array("Sophia"=>"31","Jacob"=>"41","William"=>"39","Ramesh"=>"40") in
+a) ascending order sort by value
+b) ascending order sort by Key
+c) descending order sorting by Value
+d) descending order sorting by Key -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorting of Associative Array</title>
+</head>
+<body>
+    <form action="q1.php">
+        <h4>Every Input should be separted by ":"</h4>
+        ENTER KEYS 
+        <input type="text" name="keys" placeholder="key1:key2:key3....,keyN"> <br>
+        ENTER VALUES
+        <input type="text" name="values" placeholder="value1:value2:value3....,valueN"> <br>
+
+        <input type="radio" name="op" value="1">ascending order sort by value</input> <br>
+        <input type="radio" name="op" value="2">ascending order sort by Key</input> <br>
+        <input type="radio" name="op" value="3">descending order sorting by Value</input> <br>
+        <input type="radio" name="op" value="4">descending order sorting by Key</input> <br>
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
+
+<?php
+    $keys = $_REQUEST['keys'];
+    $values = $_REQUEST['values'];
+    $op = $_REQUEST['op'];
+
+    $k = explode(':',$keys); 
+    $v = explode(':',$values);
+
+    $arr = array();
+    for($i=0;$i<count($k);$i++){
+        $arr[$k[$i]] = $v[$i];
+    }
+
+    switch($op){
+        case 1:
+            asort($arr);
+            print_r($arr);
+            break;
+        case 2:
+            ksort($arr);
+            print_r($arr);
+            break;
+        case 3:
+            arsort($arr);
+            print_r($arr);
+            break;
+        case 4:
+            krsort($arr);
+            print_r($arr);
+            break;
+    }
+?>
