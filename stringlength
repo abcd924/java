@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input[type="text"]{
+            width: 35%; 
+        }
+    </style>
+</head>
+<body>
+    <form action="q2.php">
+        ENTER A STRING
+        <input type="text" name="str" > <br>
+        SELECT YOUR OPERATION <br>
+        <input type="radio" name="op" value="1">Find Length</input> <br>
+        <input type="radio" name="op" value="2">Count Vowels</input> <br>
+        <input type="radio" name="op" value="3">LowerCase and TitleCase</input> <br>
+        <input type="radio" name="op" value="4">Padding '*' on both sides</input> <br>
+        <input type="radio" name="op" value="5">Remove the leading whitespaces</input> <br>
+        <input type="radio" name="op" value="6">Reverse of given string</input> <br>
+
+        <input type="submit" name="Submit">
+    </form>
+</body>
+</html>
+
+
+<?php
+    require 'q22.php';
+    $str = $_REQUEST['str'];
+    $op = $_REQUEST['op']; 
+
+    operation($str,$op);
+?> 
+<?php
+function operation($str, $op) 
+{
+    switch ($op) {
+        case 1:
+            echo "<br>Length of $str is :" . strlen($str);
+            break;
+        case 2: 
+            $cnt = 0;
+            for ($i = 0; $i < strlen($str); $i++) {
+                if ($str[$i] == 'a' || $str[$i] == 'e' || $str[$i] == 'i' || $str[$i] == 'o' || $str[$i] == 'u' || $str[$i] == 'A' || $str[$i] == 'E' || $str[$i] == 'I' || $str[$i] == 'O' || $str[$i] == 'U')
+                    $cnt++;
+            }
+            echo "<br> Number of Vowels is $cnt";
+            break;
+        case 3:
+            $str1 = strtolower($str);
+            echo "LowerCase: " . $str1;
+
+            $str2 = ucwords($str1);
+            echo "<br>TitleCase: " . $str2;
+            break;
+        case 4:
+            echo str_pad($str, 50, "*", STR_PAD_BOTH);
+            break;
+        case 5:
+            $s = ltrim($str);
+            echo "<br>'$str' is having length as ".strlen($str);
+            echo "<br>By removing whitespaces String is '$s' with length as ".strlen($s);
+            break;
+        case 6:
+            echo "<br>Reverse of $str is: " . strrev($str);
+            break;
+    }
+}
